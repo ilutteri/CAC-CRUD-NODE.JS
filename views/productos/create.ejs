@@ -1,0 +1,24 @@
+<form action="/productos/store" method="post">
+    <div>
+        <label for="codigo"> Codigo: </label>
+        <input type="text" id="codigo" name="codigo">
+    </div>
+    <div>
+        <label for="nombre"> Nombre: </label>
+        <input type="text" id="nombre" name="nombre">
+    </div>
+    <div>
+        <label for="descripcion"> Descripción: </label>
+        <textarea cols="30" rows="10" type="text" id="descripcion" name="descripcion"></textarea>
+    </div>
+    <div>
+        <label for="categoria"> Categoria: </label>
+        <select id="categoria" name="categoria">
+            <option value=""></option>
+            <option value="1">Categoria 1</option>
+            <option value="2">Categoria 2</option>
+            <option value="3">Categoria 3</option>
+        </select>
+    </div>
+    <button type="submit">Guardar</button>
+</form>
