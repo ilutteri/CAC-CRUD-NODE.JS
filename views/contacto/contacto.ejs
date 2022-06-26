@@ -1,23 +1,30 @@
-<% if(typeof errors != 'undefined'){ %>
-     <ul>
-        <% errors.forEach(error => { %>
-            <li><%= error.msg%></li>
-        <%}) %>
-     </ul>
-<%} %>
+<div class="row justify-content-center">
+    <div class="col-6">
 
-<form action="/contacto" method="post">
-    <div>
-        <label for="nombre" class="form-label" >Nombre: </label>
-        <input type="text" id="nombre" name="nombre" value="<%= values.nombre %>">
+        <% if(typeof errors != 'undefined'){ %>
+            <ul class="list-unstyled text-danger">
+               <% errors.forEach(error => { %>
+                   <li><%= error.msg%></li>
+               <%}) %>
+            </ul>
+       <%} %>
+       
+       <form action="/contacto" method="post">
+           <div>
+               <label for="nombre" class="form-label" >Nombre: </label>
+               <input type="text" class="form-control" id="nombre"  name="nombre" value="<%= values.nombre %>">
+           </div>
+           <div>
+               <label for="email" class="form-label">Correo: </label>
+               <input type="text" class="form-control" id="email" name="email" value="<%= values.email %>">
+           </div>
+           <div>
+               <label for="mensaje" class="form-label">Mensaje: </label>
+               <textarea cols="30" rows="10" class="form-control" id="mensaje" name="mensaje" value="<%= values.mensaje %>"></textarea>
+           </div>
+           <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+       </form>
+
     </div>
-    <div>
-        <label for="email" class="form-label">Correo: </label>
-        <input type="text" id="email" name="email" value="<%= values.email %>">
-    </div>
-    <div>
-        <label for="mensaje" class="form-label">Mensaje: </label>
-        <textarea cols="30" rows="10" id="mensaje" name="mensaje" value="<%= values.mensaje %>"></textarea>
-    </div>
-    <button type="submit">Enviar</button>
-</form>
+</div>
+

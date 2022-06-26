@@ -1,8 +1,20 @@
 <h2>Listado de Productos</h2>
 
-<% productos.forEach(producto => { %>
-    <h3><a href="/productos/<%= producto.codigo %>"><%= producto.nombre %></a></h3>
-    <!-- <p><%= producto.descripcion %></p> -->
-<% }) %>
+<div class="row">
+    <% productos.forEach(producto => { %>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">   <!--  ESTO SETEA CADA PANTALLA!!!-->
+               <!--  celu   tablet   notebook  monitor grande  -->
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><%= producto.nombre %></h5>
+                  <p class="card-text"><%= producto.descripcion %></p>
+                  <a href="/productos/<%= producto.codigo %>" class="btn btn-primary">Ver más</a>
+                  <a href="/productos/<%= producto.codigo %>/edit" class="btn btn-warning">Editar</a>
+                </div>
+              </div>
+        </div>
+    <% }) %>
+</div>
 
-<a href="/productos/create">Crear Producto</a>
+
+<a href="/productos/create" class="btn btn-success">Crear Producto</a>
