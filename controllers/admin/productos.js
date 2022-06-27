@@ -1,5 +1,5 @@
 const { request } = require("express");
-const connection = require("./db");
+const connection = require("../../db");
 
 module.exports.index = (req, res) => {
   connection.query("SELECT * FROM productos", (error, results) => {
@@ -7,12 +7,12 @@ module.exports.index = (req, res) => {
       throw error;
     }
 
-    res.render("productos/index", { productos: results });
+    res.render("admin/productos/index", { productos: results, layout: 'layout-admin' });
   });
 };
 
 module.exports.create = (req, res) => {
-  res.render("productos/create");
+  res.render("admin/productos/create", {layout: 'layout-admin'});
 };
 
 module.exports.store = (req, res) => {
@@ -29,7 +29,7 @@ module.exports.store = (req, res) => {
         throw error;
       }
 
-      res.redirect("/productos");
+      res.redirect("/admin/productos");
     }
   );
 };
@@ -43,7 +43,7 @@ module.exports.show = (req, res) => {
         throw error;
       }
 
-      res.render("productos/show", { producto: results[0] });
+      res.render("admin/productos/show", { producto: results[0], layout: 'layout-admin' });
     }
   );
 };
@@ -57,7 +57,7 @@ module.exports.edit = (req,res) => {
         throw error;
       }
 
-      res.render("productos/edit", { producto: results[0] });
+      res.render("admin/productos/edit", { producto: results[0], layout: 'layout-admin' });
     }
   );
 }
@@ -65,9 +65,17 @@ module.exports.edit = (req,res) => {
 module.exports.update = (req, res) => {
     connection.query('UPDATE productos SET ? WHERE codigo = ?',[ {
       nombre: req.body.nombre, descripcion: req.body.descripcion, categoria_id: req.body.categoria
-    }, req.body.codigo], (error) => {
+    }, req.body.codigo], error => {
       if (error) { throw error }
 
-      res.redirect("/productos");
+      res.redirect("/admin/productos");
     });
+}
+
+module.exports.delete = (req, res) => {
+  connection.query('DELETE FROM productos WHERE codigo = ?',[ req.params.codigo ], error => {
+    if (error) { throw error } 
+
+    res.redirect("/admin/productos");
+  });
 }
