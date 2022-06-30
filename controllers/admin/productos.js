@@ -1,5 +1,6 @@
 const { request } = require("express");
 const connection = require("../../db");
+const sharp = require('sharp');
 
 module.exports.index = (req, res) => {
   connection.query("SELECT * FROM productos", (error, results) => {
@@ -16,6 +17,7 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.store = (req, res) => {
+  sharp(req.file.buffer).resize(300).toFile('uploads/imagen.jpg');
   connection.query(
     "INSERT INTO productos SET ?",
     {
@@ -28,6 +30,7 @@ module.exports.store = (req, res) => {
       if (error) {
         throw error;
       }
+      sharp(req.file.buffer).resize(300).toFile()
 
       res.redirect("/admin/productos");
     }

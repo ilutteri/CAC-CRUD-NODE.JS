@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() });  //GUARDA EN BUFFER
+const sharp = require('sharp'); //PROCESADO DE IMAGENES - OPTIMIZACION - TOMA DESDE EL BUFFER
 
 const controller = require("../../controllers/admin/productos");
 
 router.get("/productos", controller.index);
 
 router.get("/productos/create", controller.create);
-router.post("/productos/store", controller.store);
+router.post("/productos/store", upload.single('imagen'), controller.store); //NOMBRE DEL INPUT
 
 router.get("/productos/:codigo", controller.show);
 
