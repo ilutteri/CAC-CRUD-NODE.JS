@@ -6,6 +6,7 @@
   <thead>
     <th>Codigo</th>
     <th>Nombre</th>
+    <th>Imagen</th>
     <th></th>
   </thead>
   <tbody>
@@ -13,6 +14,7 @@
     <tr>
       <td><%= producto.codigo %></td>
       <td><%= producto.nombre %></td>
+      <td><img width="100" src="/uploads/producto_<%= producto.codigo %>.jpg" alt="<%= producto.codigo %>"></td>
       <td>
         <a href="/admin/productos/<%= producto.codigo %>" class="btn btn-primary">Ver más</a>
         <a href="/admin/productos/<%= producto.codigo %>/edit" class="btn btn-warning">Editar</a>

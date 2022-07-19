@@ -14,7 +14,7 @@ router.post("/productos/store", upload.single('imagen'), controller.store); //NO
 router.get("/productos/:codigo", controller.show);
 
 router.get('/productos/:codigo/edit', controller.edit);
-router.put('/productos/update', controller.update);
+router.put('/productos/update',upload.single('imagen'), controller.update);
 
 router.delete('/productos/:codigo/delete', controller.delete);
 

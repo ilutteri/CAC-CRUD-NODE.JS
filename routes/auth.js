@@ -20,7 +20,7 @@ router.post('/login',  (req, res)=> {
         } else {
             req.session.user_id = results[0].id;
 
-            res.redirect('/');
+            res.redirect('/admin/productos');
         }
     })
 })
